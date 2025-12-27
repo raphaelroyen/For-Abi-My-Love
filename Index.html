@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Abi 🎄❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400&display=swap');
+
+body{
+  margin:0;
+  height:100vh;
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at top,#7b1e1e,#1a0000);
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+.slide{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:30px;
+  opacity:0;
+  transform:scale(0.95);
+  transition:1s ease;
+}
+
+.slide.active{
+  opacity:1;
+  transform:scale(1);
+}
+
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:3.2rem;
+}
+
+p{
+  font-size:1.25rem;
+  max-width:650px;
+  line-height:1.8;
+}
+
+.heart{
+  font-size:3.5rem;
+  margin-top:20px;
+  animation:pulse 1.6s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.35);}
+  100%{transform:scale(1);}
+}
+
+.tap{
+  position:fixed;
+  bottom:20px;
+  font-size:.9rem;
+  opacity:.7;
+}
+
+.snow{
+  position:fixed;
+  top:-10px;
+  font-size:14px;
+  animation:fall linear infinite;
+  opacity:.7;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh);}
+}
+</style>
+</head>
+
+<body onclick="nextSlide()">
+
+<audio id="music" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="slide active">
+  <h1>Merry Christmas, Abi 🎄</h1>
+  <p>
+    This isn’t just a website…  
+    it’s something I made  
+    thinking only about you.
+  </p>
+  <div class="heart">❤️</div>
+</div>
+
+<div class="slide">
+  <h1>You Feel Like Home</h1>
+  <p>
+    December feels warmer  
+    when your name exists in my heart.  
+    Calm. Safe. Real.
+  </p>
+</div>
+
+<div class="slide">
+  <h1>Just Us</h1>
+  <p>
+    If the world gets loud,  
+    I’d still choose quiet moments with you.  
+    No rush. No noise.
+  </p>
+  <div class="heart">🎁💖</div>
+</div>
+
+<div class="slide">
+  <h1>Counting Us 🥰</h1>
+  <p>
+    <strong>27 days to go</strong><br>
+    for our first love anniversary 💞<br><br>
+    you’re my favorite part of every day.
+  </p>
+</div>
+
+<div class="tap">Tap anywhere 💕</div>
+
+<script>
+let current=0;
+const slides=document.querySelectorAll(".slide");
+const music=document.getElementById("music");
+let started=false;
+
+function nextSlide(){
+  if(!started){
+    music.play().catch(()=>{});
+    started=true;
+  }
+  slides[current].classList.remove("active");
+  current = (current + 1) % slides.length;
+  slides[current].classList.add("active");
+}
+
+function snow(){
+  const s=document.createElement("div");
+  s.className="snow";
+  s.innerText="❄️";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=5+Math.random()*5+"s";
+  s.style.fontSize=10+Math.random()*10+"px";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),10000);
+}
+setInterval(snow,300);
+</script>
+
+</body>
+</html>
